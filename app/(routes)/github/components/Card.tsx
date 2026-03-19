@@ -7,11 +7,27 @@ interface Props {
   description: string;
   repoType: string;
   star: number;
-  tech: "TypeScript" | "JavaScript" | "Vue" | "HTML" | "CSS" | "PHP";
+  tech: string;  // ← Cambiado de un tipo específico a string genérico
   watcher: number;
 }
 
+// Mapa de colores para los lenguajes
+const techColors: {[key: string]: string} = {
+  JavaScript: 'bg-yellow-300',
+  TypeScript: 'bg-blue-600',
+  Vue: 'bg-green-500',
+  HTML: 'bg-orange-600',
+  CSS: 'bg-blue-400',
+  PHP: 'bg-purple-600',
+  Python: 'bg-green-400',
+  Blade: 'bg-red-400',  // ← Agregamos Blade (el que usas)
+  // Agrega más según necesites
+};
+
 const Card = ({ name, description, repoType, star, tech, watcher }: Props) => {
+  // Validación segura para tech
+  const cleanTech = typeof tech === 'string' ? tech.trim() : '';
+  
   return (
     <div className="w-full border group hover:border-accentColor cursor-pointer rounded-md col-span-4 h-34 p-4 flex flex-col items-start gap-6 transition-all">
       <div className="w-full flex justify-between items-center">
@@ -26,31 +42,28 @@ const Card = ({ name, description, repoType, star, tech, watcher }: Props) => {
       <div className="w-full">
         <p className="text-xs truncate text-gray-400 font-normal">
           {description ||
-            "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Itaque amet"}
+            "🚀 Proyecto en desarrollo"}
         </p>
       </div>
 
       <div className="w-full flex items-center justify-between gap-4">
         <div className="flex gap-3 items-center">
-          {tech ? (
+          {cleanTech ? (
             <div className="flex items-center gap-2">
               <div
                 className={cn(
                   "w-3 h-3 rounded-full",
-                  tech === "JavaScript"
-                    ? "bg-yellow-300"
-                    : tech === "Vue"
-                    ? "bg-green-500"
-                    : tech === "TypeScript"
-                    ? "bg-blue-600"
-                    : tech === "HTML"
-                    ? "bg-orange-600"
-                    : ""
+                  techColors[cleanTech] || 'bg-gray-400'
                 )}
               />
-              <div className="text-gray-400 text-[12px]">{tech}</div>
+              <div className="text-gray-400 text-[12px]">{cleanTech}</div>
             </div>
-          ) : null}
+          ) : (
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 rounded-full bg-gray-400" />
+              <div className="text-gray-400 text-[12px]">📁 Varios</div>
+            </div>
+          )}
 
           <div className="flex items-center gap-3">
             <FiStar size={13} color="white" />
@@ -64,7 +77,7 @@ const Card = ({ name, description, repoType, star, tech, watcher }: Props) => {
         </div>
         <Link
           target="_blank"
-          href={`https://github.com/ShinnTNT/${name}`}
+          href={`https://github.com/Rafael-PG/${name}`}
           className="flex shadow-md bg-accentColor backdrop-contrast-200 rounded-lg px-[8px] py-[1px] items-center "
         >
           <div className="text-[10px] font-semibold tracking-[0.6px] text-white">

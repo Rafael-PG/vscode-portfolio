@@ -5,21 +5,21 @@
 /* Theme */
 @layer base {
   html {
-    --main-bg: #282a36;
+    --main-bg: #1e1e1e;
     --bg-text: #313340;
     --text-color: #efefef;
-    --accent-color: #bd93f9;
-    --titlebar-bg: #1e1f29;
-    --sidebar-bg: #343746;
+    --accent-color: #3c3c3c;
+    --titlebar-bg: #2d2d2d;
+    --sidebar-bg: #333333;
     --sidebar-hover-bg: #3c3d51;
-    --explorer-bg: #21222c;
+    --explorer-bg: #252526;
     --explorer-hover-bg: #313241;
     --explorer-border: #161a1d;
-    --tabs-bg: #191a21;
-    --tab-bg: #21222c;
-    --tab-active-bg: #282a36;
-    --tab-border: #191a21;
-    --bottombar-bg: #191a21;
+    --tabs-bg: #252526;
+    --tab-bg: #1e1e1e;
+    --tab-active-bg: #252526;
+    --tab-border: #252526;
+    --bottombar-bg: #007acc;
     --bottombar-border: #191a21;
   }
 
@@ -163,5 +163,50 @@
 
   .cards:hover > .card:hover > .title {
     color: var(--accent-color);
+  }
+  /* Ajustes de scroll */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #4a4a4a #2a2a2a;
+  }
+
+  /* Para Chrome, Edge, Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #2a2a2a;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #4a4a4a;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #5a5a5a;
+  }
+
+  /* Clase para ocultar scroll cuando no se necesita */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Asegurar que el contenido principal tenga buen espaciado */
+  .bg-main {
+    background-color: var(--main-bg);
+    padding: 1rem;
+  }
+
+  /* Ajustar el contenedor del explorador */
+  .overflow-y-auto {
+    scrollbar-width: thin;
   }
 }

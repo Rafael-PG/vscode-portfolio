@@ -10,8 +10,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        serif: ["var(--font-fraunces)", ...fontFamily.serif],
-        sans: ["var(--font-quicksand)", ...fontFamily.sans],
+        "jetbrains-mono": ["JetBrains Mono", "monospace"],
+        'poppins': ['Poppins', 'sans-serif'],
       },
       colors: {
         main: "var(--main-bg)",
